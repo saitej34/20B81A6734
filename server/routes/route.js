@@ -59,3 +59,5 @@ router.get('/getAlltrains',async(req,res)=>{
 
 })
 
+module.exports = router;
+
