@@ -12,6 +12,9 @@ const AllTrains = () => {
   return (
     <div>
         <center><p className="text-4xl text-green-900">Train Data Get Access to all Trains</p></center>
+        <br/>
+        <center><a href="/specifictrain" className="text-center text-blue-500"><u>Get Data of Specific Train</u></a></center>
+        <br/>
         <div className="container mx-auto mt-7 px-4   py-8 ">
         <table className="w-full text-sm text-center shadow ring-1 ring-black ring-opacity-5 text-gray-900 divide-y divide-gray-300 md:rounded-lg">
           <thead className="text-xs text-center  text-gray-900 uppercase bg-gray-50">

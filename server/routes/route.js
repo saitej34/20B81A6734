@@ -59,5 +59,48 @@ router.get('/getAlltrains',async(req,res)=>{
 
 })
 
+router.get('/train/:num',async(req,res)=>{
+    const trainNo = req.params.num;
+    console.log(trainNo);
+    const body = {
+        "companyName":"Train Central",
+        "clientID":"f4d6c86b-9e64-48f0-ad62-3341300df2d6",
+        "ownerName":"saiteja",
+        "ownerEmail":"saiteja6734.yelagandula@gmail.com",
+        "rollNo":"20B81A6734",
+        "clientSecret":"xeUBrVfdwUzWHRih"
+    }
+    var accessToken;
+    const tokendata = await axios.post("http://20.244.56.144/train/auth",body).then((res)=>{
+        console.log("in",res.data.access_token);
+        accessToken = res.data.access_token;
+    })
+    const ax = axios.create({
+        baseURL: 'http://20.244.56.144/train/trains', 
+        headers: {
+          'Authorization': `Bearer ${accessToken}` 
+        }
+      });
+
+      
+             ax.get("http://20.244.56.144/train/trains").then(
+              data=>{
+
+                tdata=data.data;
+                console.log(tdata);
+                for(var i=0;i<tdata.length;i++)
+                {
+                    if(tdata[i].trainNumber == trainNo)
+                    {
+                        res.send(tdata[i]);
+                    }
+                }
+              }
+             ).catch((res)=>{
+                console.log(res);
+             })
+
+})
+
 module.exports = router;
 
